@@ -42,7 +42,6 @@ VALUES (
         'Mountain Range'
     );
 
-
 INSERT INTO
     species (
         common_name,
@@ -112,7 +111,6 @@ VALUES (
         NULL
     );
 
-
 SELECT * FROM rangers
 
 SELECT * FROM species
@@ -159,3 +157,41 @@ FROM sightings
     JOIN rangers USING (ranger_id)
 ORDER BY sighting_time DESC
 LIMIT 2
+
+-- problem 7
+
+UPDATE species
+SET
+    conservation_status = 'Historic'
+WHERE
+    extract(
+        year
+        FROM discovery_date
+    ) < 1800;
+
+-- problem 8
+
+SELECT
+    sighting_id,
+    CASE
+        WHEN extract(
+            HOUR
+            FROM sighting_time
+        ) < 12 THEN 'Morning'
+        WHEN extract(
+            HOUR
+            FROM sighting_time
+        ) BETWEEN 12 AND 17  THEN 'Afternoon'
+        ELSE 'Evening'
+    END as time_of_day
+FROM sightings
+
+-- problem 9
+
+DELETE FROM rangers
+WHERE
+    ranger_id NOT IN (
+        SELECT DISTINCT
+            ranger_id
+        FROM sightings
+    );
