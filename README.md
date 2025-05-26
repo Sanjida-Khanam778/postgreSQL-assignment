@@ -1,4 +1,4 @@
-# PostgreSQL
+# PostgreSQL: মূল ধারণা ও অ্যাগ্রিগেট ফাংশনগুলোর ব্যাখ্যা
 
 ## 1. PostgreSQL কী?
 
